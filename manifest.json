@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Flash · Video Speed",
+  "version": "1.0.0",
+  "description": "轻量 HTML5 视频倍速控制：自定义倍率、动态视频、悬浮面板与快捷键。",
+  "permissions": ["storage"],
+  "host_permissions": ["http://*/*", "https://*/*", "file:///*"],
+  "background": {"service_worker": "background.js"},
+  "action": {"default_popup": "popup/popup.html", "default_title": "Flash 视频倍速", "default_icon": {"16":"icons/icon16.png","48":"icons/icon48.png","128":"icons/icon128.png"}},
+  "icons": {"16":"icons/icon16.png","48":"icons/icon48.png","128":"icons/icon128.png"},
+  "content_scripts": [{"matches":["http://*/*","https://*/*","file:///*"],"js":["content.js"],"run_at":"document_idle","all_frames":true,"match_about_blank":true,"match_origin_as_fallback":true}],
+  "web_accessible_resources": [{"resources":["styles/content.css"],"matches":["<all_urls>"]}],
+  "commands": {
+    "slower": {"suggested_key":{"default":"Alt+Shift+Comma"},"description":"降低视频速度"},
+    "faster": {"suggested_key":{"default":"Alt+Shift+Period"},"description":"提高视频速度"},
+    "reset": {"suggested_key":{"default":"Alt+Shift+0"},"description":"恢复 1x"}
+  }
+}
